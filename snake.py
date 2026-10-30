@@ -17,7 +17,7 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-
+step = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
 
 def change(x, y):
     """Change snake direction."""
@@ -32,7 +32,11 @@ def move_food():
     """Moves the food  randomly by staying inside the window"""
     step = choice(steps)
     new_food = food.copy()
-    new_fppd.move(step)
+    new_food.move(step)
+
+    if inside(new_food):
+    food.x = new_food.x
+    food.y = new_food.y
 
 def move():
     """Move snake forward one segment."""
